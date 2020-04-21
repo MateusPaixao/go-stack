@@ -25,10 +25,16 @@ function App(){
     // 1. Variável com o seu valor inicial
     // 2. Função para atualizarmos esse valor
     
-    function handleAddProject() {
-        setProjects([...projects, `Novo projeto ${Date.now()}`])
+    async function handleAddProject() {
+        // setProjects([...projects, `Novo projeto ${Date.now()}`])
 
-        console.log(projects)
+        const {data: project} = await api.post('projects', {
+            title: `Novo projeto ${Date.now()}`,
+            owner: "Mateus"
+        })
+
+        setProjects([...projects, project])
+
     }
 
     return (
